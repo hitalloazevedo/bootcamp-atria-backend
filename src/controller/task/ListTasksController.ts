@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
 import type {ListTasksUseCase} from '../../usecases/task/ListTasksUseCase';
 
-export class ListTaasksControler{
+export class ListTasksControler{
     constructor(private ListTasksUseCase: ListTasksUseCase) {}
 
     async handle(request: Request, response: Response){
