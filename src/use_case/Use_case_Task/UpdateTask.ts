@@ -1,4 +1,4 @@
-import { IPostRepository } from "../repository/post-repository.interface";
+import { IPostRepository } from "../repository/post-repository.interface"; // mudar quando tiver o repositorio
 
 export class UpdatePostUseCase {
 
@@ -8,11 +8,13 @@ export class UpdatePostUseCase {
         id,
         title,
         content,
+        status,
         authorId
     }: {
         id: number;
         title: string;
         content: string;
+        status: string;
         authorId: string;
     }) {
         const post = await this.repo.findById(id);
@@ -29,6 +31,7 @@ export class UpdatePostUseCase {
         // Atualiza os campos
         post.title = title;
         post.content = content;
+        post.status = status; 
 
         await this.repo.update(post);
     }

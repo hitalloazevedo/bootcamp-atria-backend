@@ -1,6 +1,6 @@
 import { IPostRepository } from "../repository/task-repository.interface"; // mudar quando tiver o repositorio
 
-export class FindAllTaskUseCase {
+export class FindAllPostUseCase {
 
     constructor(private repo: IPostRepository) {}
 
