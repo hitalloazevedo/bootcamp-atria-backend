@@ -9,5 +9,5 @@ app.use(express.json())
 app.use('/', Routes)
 
 app.listen(3000, () => {
-    console.log("Servidor rodando em localhost:3000")
-})
+    console.log("Servidor rodando em localhost:3000");
+});
