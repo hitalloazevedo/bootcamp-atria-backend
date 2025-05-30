@@ -1,5 +1,5 @@
 import express from 'express'
-import ensureAuthenticated from '../middlewares/ensureAuthenticated'
+import { ensureAuthenticated } from '../middlewares/ensureAuthenticated'
 import { Request, Response, NextFunction } from 'express'
 import {createUser, createLogin, getTask, createTask, updateTask, deleteTask} from './dependency'
 

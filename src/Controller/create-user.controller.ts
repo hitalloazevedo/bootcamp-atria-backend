@@ -1,16 +1,16 @@
 import { Request, Response } from "express";
-import { RegisterUserUseCase } from "../use_case/Use_case_auth/Register";
+import { CreatUserUseCase } from "../use_case/Use_case_auth/create-user.use-case"; 
 
 export class CreatUserController {
-    constructor(private usecase: RegisterUserUseCase) { }
+    constructor(private usecase: CreatUserUseCase) { }
 
     async handle(request: Request, response: Response) {
 
         try {
-            const {nome, email, password} = request.body
+            const data = request.body
 
 
-            await this.usecase.execute(nome, email, password)
+            await this.usecase.execute(data)
 
             response.status(201).json({
                 message: "usuario criado com sucesso"

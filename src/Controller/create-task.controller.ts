@@ -1,8 +1,8 @@
 import { Request, response, Response } from "express";
-import { CreateTaskUseCase } from "../use_case/Use_case_Task/create-task";
+import { CreatTaskUseCase } from "../use_case/Use_case_Task/create-task.use-case"; 
 
-export class CreateTaskController {
-    constructor(private usecase: CreateTaskUseCase) { }
+export class CreatTaskController {
+    constructor(private usecase: CreatTaskUseCase) { }
 
     async handle(request: Request, response: Response) {
 

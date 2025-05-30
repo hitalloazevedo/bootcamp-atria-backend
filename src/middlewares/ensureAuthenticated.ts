@@ -1,39 +1,46 @@
-import { Request, Response, NextFunction } from 'express';
-import jwt, { Secret, JwtPayload } from 'jsonwebtoken';
-import dotenv from 'dotenv'; // Importe o dotenv
-dotenv.config(); // Carregue as variáveis de ambiente
+import { Request, Response, NextFunction } from "express";
+import jwt from "jsonwebtoken";
+import { authConfig } from "../config/auth";
 
-const authConfig = {
-    secret: process.env.SECRET_KEY, // variável de ambiente
-};
-
-declare module 'express-serve-static-core' {
+declare module "express-serve-static-core" {
     interface Request {
         userId?: string;
     }
 }
 
-function ensureAuthenticated(
-    request: Request,
-    response: Response,
+interface TokenPayload {
+    sub: string;
+}
+
+export function ensureAuthenticated(
+    req: Request, 
+    res: Response, 
     next: NextFunction
-): Response | void {
-    const authHeader = request.headers.authorization;
+): void { 
+
+    const authHeader = req.headers.authorization;
 
     if (!authHeader) {
-        return response.status(401).json({ message: 'Token não fornecido' });
+        res.status(401).json({ error: "Token missing" });
+        return;  
     }
 
-    const [, token] = authHeader.split(' ');
+    const [, token] = authHeader.split(" ");
 
     try {
-        const decoded = jwt.verify(token, authConfig.secret as Secret) as JwtPayload;
-        const { sub } = decoded;
-        request.userId = sub as string;
-        return next();
-    } catch (err) {
-        return response.status(401).json({ message: 'Token inválido' });
+        const decoded = jwt.verify(token, authConfig.secret) as TokenPayload;
+        req.userId = decoded.sub;
+
+        next();  
+    } catch {
+        res.status(401).json({ error: "Invalid token" });
+        return; 
     }
 }
 
-export default ensureAuthenticated;
+declare module "express-serve-static-core" {
+    interface Request {
+        userId?: string;
+    }
+}
+

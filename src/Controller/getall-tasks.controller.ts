@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { FindAllPostUseCase } from "../use_case/Use_case_Task/Find-task";
+import { GetAllTaskUseCase } from "../use_case/Use_case_Task/getall-task.use-case"; 
 
 export class GetAllTasksController {
-    constructor(private usecase: FindAllPostUseCase) { }
+    constructor(private usecase: GetAllTaskUseCase) { }
 
     async handle(request: Request, response: Response) {
         try {
