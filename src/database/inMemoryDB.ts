@@ -1,5 +1,5 @@
-import { User } from '../src/entities/User'; // por algum motivo esta dizendo q n esta achando o caminho do user
-import { Post } from '../src/entities/Post'; // por algum motivo esta dizendo q n esta achando o caminho do post
+import { User } from '../entities/User'; // por algum motivo esta dizendo q n esta achando o caminho do user
+import { Post } from '../entities/Post'; // por algum motivo esta dizendo q n esta achando o caminho do post
 import { v4 as uuidv4 } from 'uuid';
 
 // ⚠️  ATENÇÃO: Este arquivo inMemoryDB.ts é TEMPORÁRIO.

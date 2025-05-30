@@ -1,78 +1,47 @@
 import express from 'express'
-import { RegisterUserController } from '../controller/auth/RegisterUserController'
-import { LoginUserController } from '../controller/auth/LoginUserController'
-import { UpdateTaskController } from '../controller/task/UpdateTaskController'
-import { CreateTaskController } from '../controller/task/CreateTaskController'
-import { DeleteTaskController } from '../controller/task/DeleteTaskController'
-import { ListTasksControler } from '../controller/task/ListTasksController'
+import ensureAuthenticated from '../middlewares/ensureAuthenticated'
+import { Request, Response, NextFunction } from 'express'
+import {createUser, createLogin, getTask, createTask, updateTask, deleteTask} from './dependency'
 
 const router = express.Router()
 
-//cadastro
-router.post('/auth/register', (req, res) => {
-    
-    RegisterUserController.handle(req, res)
 
-    return res.status(200)
+router.use(((req: Request, res: Response, next: NextFunction) => {
+  
+  const needsAuth = req.path.startsWith('/tasks') 
+
+  if (needsAuth) {
+    return ensureAuthenticated(req, res, next);
+  }
+
+  return next();
+}) as express.RequestHandler);
+
+
+//Usuario
+router.post('/auth/register', (req, res) => {   
+    createUser.handle(req, res)
 })
 
-
-//login
 router.post("/auth/login", (req, res) => {
-
-    // import middleware auth
-
-    //handles staticos
-    const user = LoginUserController.handle(req, res)
-
-    return res.status(user.status).json(user.token)
+    createLogin.handle(req, res)
 })
 
-
-// listar tarefas
-router.get('/tasks', (req,res) => {
-
-     // import middleware auth
-
-    const tasks = ListTasksControler.handle(req, res)
-
-    return res.status(tasks.status).json(tasks)
+//tarefas
+router.get('/tasks', (req, res) => {
+    getTask.handle(req, res)
 })
 
-
-// criar tarefa
-router.post('/tasks', (req,res) => {
-
-    // import middleware auth
-
-    const task = CreateTaskController.handle(req, res)
-
-    return res.status(task.status)
-    //return res.status(task.status).json(tasks)
-
+router.post('/tasks', (req, res) => {
+    createTask.handle(req, res)
 })
 
-
-// atualizar tarefas
-router.put('/tasks/:id', (req,res) => {
-
-    // import middleware auth
-
-    const task = UpdateTaskController.handle(req, res)
-
-    return res.status(task.status).json(task)
+router.put('/tasks/:id', (req, res) => {
+    updateTask.handle(req, res)
 })
 
-
-// excluir tarefas
-router.delete('/tasks/:id', (req,res) => {
-
-    // import middleware auth
-
-    const task = DeleteTaskController.handle(req, res)
-
-    return res.status(task.status)
+router.delete('/tasks/:id', (req, res) => {
+    deleteTask.handle(req, res)
 })
-
 
 export default router
