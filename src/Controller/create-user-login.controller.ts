@@ -1,16 +1,16 @@
 import { Request, Response } from "express";
-import { LoginUserUseCase } from "../use-cases/login-user.use-case";
+import { AuthenticateUserUseCase } from "../use_case/Use_case_auth/Login";
 
 export class LoginUserController {
-    constructor(private usecase: LoginUserUseCase) {}
+    constructor(private usecase: AuthenticateUserUseCase) {}
 
     async handle(request: Request, response: Response) {
-        const data = request.body;
+        const {email, password} = request.body;
 
         try {
-            const token = await this.usecase.execute(data);  // ✅ Faltava o await aqui
+            const token = await this.usecase.execute(email, password);  // ✅ Faltava o await aqui
             return response.status(200).json({ token });  // ✅ Agora funciona
-        } catch (err) {
+        } catch (err: any) {
             return response.status(400).json({ error: err.message });
         }
     }

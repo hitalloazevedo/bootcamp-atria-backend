@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { GetAllTaskUseCase } from "../use-cases/getall-task.use-case";
+import { FindAllPostUseCase } from "../use_case/Use_case_Task/Find-task";
 
 export class GetAllTasksController {
-    constructor(private usecase: GetAllTaskUseCase) { }
+    constructor(private usecase: FindAllPostUseCase) { }
 
     async handle(request: Request, response: Response) {
         try {
@@ -17,7 +17,7 @@ export class GetAllTasksController {
                 data: tasks
 
             })
-        } catch (error) {
+        } catch (error: any) {
             response.status(500).json({
                 message: "Erro ao listar tarefas",
                 error: error.message

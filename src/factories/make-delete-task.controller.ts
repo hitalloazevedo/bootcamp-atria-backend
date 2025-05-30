@@ -1,13 +1,14 @@
 import { Database } from "../repository/implementations/in-memory-database";
 import { TaskRepository } from "../repository/implementations/task.repository";
-import { DeleteTaskUseCase } from "../use-cases/delete-task.use-case";
-import { DeletTaskController } from "../Controller/delete-task.controller";
+import { DeleteTaskController } from "../Controller/delete-task.controller";
+import { DeleteTaskUseCase } from "../use_case/Use_case_Task/delete-task";
 
-export function MakeDeletTaskController() {
+export function MakeDeleteTaskController() {
 
     const db = Database.getInstance();
     const taskRepository = new TaskRepository(db);
-    const deleteTaskUseCasa = new DeleteTaskUseCase(taskRepository);
-    const deleteTaskController = new DeletTaskController(deleteTaskUseCasa);
-    return deleteTaskController;
+    const deleteTaskUseCase = new DeleteTaskUseCase(taskRepository);
+    const deleteTask = new DeleteTaskController(deleteTaskUseCase);
+
+    return deleteTask;
 }

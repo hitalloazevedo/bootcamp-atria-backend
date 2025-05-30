@@ -1,18 +1,14 @@
 import { Database } from "../repository/implementations/in-memory-database"; 
 import { UserRepository } from "../repository/implementations/user.repository";
-import { LoginUserUseCase } from "../use-cases/login-user.use-case";
 import { LoginUserController } from "../Controller/create-user-login.controller";
+import { AuthenticateUserUseCase } from "../use_case/Use_case_auth/Login";
 
-export function MakeCreatLoginController(){
- const db = Database.getInstance();
+export function MakeCreateLoginController(){
+    
+    const db = Database.getInstance();
+    const repo = new UserRepository (db);
+    const usecase = new AuthenticateUserUseCase(repo);
+    const createLogin = new LoginUserController(usecase);
 
- const repo = new UserRepository (db);
-
- const usecase = new LoginUserUseCase(repo);
-
- const contoller = new LoginUserController(usecase);
-
- return contoller;
-
-
+    return createLogin;
 }

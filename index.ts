@@ -1,13 +1,12 @@
-import express from "express";
-import publicRoutes from './src/routes/public.ts';
-import privateRoutes from './src/routes/private.ts';
-import ensureAuthenticated from './src/middlewares/ensureAuthenticated'; // middleware
+import express from "express"
+import Routes from './src/routes/routes.ts'
 
-const app = express();
-app.use(express.json());
+// varios erros estão presentes pois varias implementações serão feitas 
 
-app.use('/', publicRoutes);
-app.use('/tasks', ensureAuthenticated, privateRoutes);
+const app = express()
+app.use(express.json())
+
+app.use('/', Routes)
 
 app.listen(3000, () => {
     console.log("Servidor rodando em localhost:3000");

@@ -1,6 +1,6 @@
 import { IPostRepository } from "../repository/post-repository.interface"; // mudar quando tiver o repositorio
 
-export class UpdatePostUseCase {
+export class UpdatetaskUseCase {
 
     constructor(private repo: IPostRepository) {}
 

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { DeleteTaskUseCase } from "../use-cases/delete-task.use-case";
+import { DeleteTaskUseCase } from "../use_case/Use_case_Task/delete-task";
 
-export class DeletTaskController {
+export class DeleteTaskController {
     constructor(private usecase: DeleteTaskUseCase) { }
 
     async handle(request: Request, response: Response) {
@@ -16,7 +16,7 @@ export class DeletTaskController {
             response.status(200).json({
                 message: "Tarefa deletada com sucesso"
             })
-        } catch (error) {
+        } catch (error: any) {
             response.status(400).json({
                 message: error.message
             })

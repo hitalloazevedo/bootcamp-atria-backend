@@ -1,7 +1,7 @@
 import { Post } from "../../entities/Post";
 import { IPostRepository } from "../repository/post-repository.interface"; // mudar quando tiver o repositorio
 
-export class CreatePostUseCase {
+export class CreateTaskUseCase {
 
     constructor(private repo: IPostRepository) {}
 

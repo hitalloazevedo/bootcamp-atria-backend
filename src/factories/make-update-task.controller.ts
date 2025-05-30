@@ -1,12 +1,14 @@
+import { UpdateTaskController } from "../Controller/update-task.controller";
 import { Database } from "../repository/implementations/in-memory-database";
 import { TaskRepository } from "../repository/implementations/task.repository";
-import { UptdateTaskUseCase } from "../use-cases/update-task.use-case";
-import { UptdateTaskController } from "../Controller/update-task.controller";
+import { UpdatetaskUseCase } from "../use_case/Use_case_Task/update-task";
 
 export function MakeUpdateTaskController() {
+    
     const db = Database.getInstance();
     const taskRepository = new TaskRepository(db);
-    const updateTaskUseCase = new UptdateTaskUseCase(taskRepository);
-    const updateTaskController = new UptdateTaskController(updateTaskUseCase);
-    return updateTaskController;
+    const updateTaskUseCase = new UpdatetaskUseCase(taskRepository);
+    const updateTask = new UpdateTaskController(updateTaskUseCase);
+
+    return updateTask;
 }
