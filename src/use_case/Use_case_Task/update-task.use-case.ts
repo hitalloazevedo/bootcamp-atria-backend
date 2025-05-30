@@ -1,15 +1,13 @@
 import { ITaskRepository } from "../../entities/repository/task-repository.interface";
 import { Task } from "../../entities/Task";
 
-export class UptdateTaskUseCase {
+export class UpdateTaskUseCase {
 
-constructor(private repo : ITaskRepository){}
+    constructor(private repo : ITaskRepository){}
 
-async excute ({userId, title,description,status,createdAt}:{userId: number, title: string,description: string,status: string,createdAt: string}, taskID : number){
-const newTask = new Task(userId, title,description,status,createdAt);
+    async execute ({userId, title,description,status,createdAt}:{userId: number, title: string,description: string,status: string,createdAt: string}, taskID : number){
+    const newTask = new Task(userId, title,description,status,createdAt);
 
-    await this.repo.update(newTask, taskID);
-
-}
-
+        await this.repo.update(newTask, taskID);
+    }
 }

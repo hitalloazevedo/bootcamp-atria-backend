@@ -1,7 +1,7 @@
 import { Task } from "../../entities/Task"; 
 import { ITaskRepository } from "../../entities/repository/task-repository.interface"; 
 
-export class CreatTaskUseCase{
+export class CreateTaskUseCase{
 
     constructor(private repo : ITaskRepository){}
 

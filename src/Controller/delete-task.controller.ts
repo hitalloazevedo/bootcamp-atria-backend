@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { DeleteTaskUseCase } from "../use_case/Use_case_Task/delete-task.use-case"; 
 
-export class DeletTaskController {
+export class DeleteTaskController {
     constructor(private usecase: DeleteTaskUseCase) { }
 
     async handle(request: Request, response: Response) {

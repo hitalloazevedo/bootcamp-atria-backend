@@ -1,6 +1,6 @@
 import { Database } from "../entities/repository/implementations/in-memory-database"; 
 import { UserRepository } from "../entities/repository/implementations/user.repository"; 
-import { LoginUserController } from "../Controller/create-user-login.controller"; 
+import { LoginUserController } from "../controller/create-user-login.controller"; 
 import { LoginUserUseCase } from "../use_case/Use_case_auth/login-user.use-case"; 
 
 export function MakeCreateLoginController(){

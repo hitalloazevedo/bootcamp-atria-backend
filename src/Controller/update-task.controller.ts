@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { UptdateTaskUseCase } from "../use_case/Use_case_Task/update-task.use-case"; 
+import { UpdateTaskUseCase } from "../use_case/Use_case_Task/update-task.use-case"; 
 
-export class UptdateTaskController {
-    constructor(private usecase: UptdateTaskUseCase) { }
+export class UpdateTaskController {
+    constructor(private usecase: UpdateTaskUseCase) { }
 
     async handle(request: Request, response: Response) {
         const { id } = request.params;  // pega o id da task pela URL
@@ -12,7 +12,7 @@ export class UptdateTaskController {
 
         const userId = Number(request.userId);  // ✅ pega do req, não do body
 
-        await this.usecase.excute(
+        await this.usecase.execute(
             { userId, title, description, status, createdAt },
             taskId
         );

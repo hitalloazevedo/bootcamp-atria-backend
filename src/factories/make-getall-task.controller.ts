@@ -1,4 +1,4 @@
-import { GetAllTasksController } from "../Controller/getall-tasks.controller"; 
+import { GetAllTasksController } from "../controller/getall-tasks.controller"; 
 import { Database } from "../entities/repository/implementations/in-memory-database";
 import { TaskRepository } from "../entities/repository/implementations/task.repository"; 
 import { GetAllTaskUseCase } from "../use_case/Use_case_Task/getall-task.use-case"; 

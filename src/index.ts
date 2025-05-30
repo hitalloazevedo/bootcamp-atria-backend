@@ -1,7 +1,5 @@
 import express from "express"
-import router from "./src/routes/routes"
-
-// varios erros estão presentes pois varias implementações serão feitas 
+import router from "./routes/routes"
 
 const app = express()
 app.use(express.json())

@@ -24,7 +24,7 @@ export class Database {
         console.log(this.Tasklist);
     }
 
-    public uptdateTask(task: Task, taskID: number) {
+    public updateTask(task: Task, taskID: number) {
 
        this.Tasklist = this.Tasklist.filter((task) => task.getId() != taskID) // remove a tarefa antes das alteraçoes da lista 
         task.setId(taskID); //seta o mesmo id para a task atualizada

@@ -21,8 +21,6 @@ export class TaskRepository implements ITaskRepository {
     }
    
     async update(task: Task, taskID: number): Promise<void> {
-        this.db.uptdateTask(task, taskID);
+        this.db.updateTask(task, taskID);
     }
-
-
 }

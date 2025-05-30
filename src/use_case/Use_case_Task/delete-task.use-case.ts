@@ -5,7 +5,5 @@ export class DeleteTaskUseCase{
 
     async execute(taskId: number){
         await this.repo.delete(taskId);
-
     }
-
 }

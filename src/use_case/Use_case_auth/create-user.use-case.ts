@@ -2,7 +2,7 @@ import { User } from "../../entities/User";
 import { IUserRepository } from "../../entities/repository/user-repository.interface";
 import bcrypt from "bcryptjs";
 
-export class CreatUserUseCase {
+export class CreateUserUseCase {
     constructor(private repo: IUserRepository) {}
 
     async execute({ name, email, password }: { name: string; email: string; password: string }) {

@@ -1,14 +1,14 @@
 import { Database } from "../entities/repository/implementations/in-memory-database"; 
 import { UserRepository } from "../entities/repository/implementations/user.repository"; 
-import { CreatUserController } from "../Controller/create-user.controller"; 
-import { CreatUserUseCase } from "../use_case/Use_case_auth/create-user.use-case"; 
+import { CreateUserController } from "../controller/create-user.controller"; 
+import { CreateUserUseCase } from "../use_case/Use_case_auth/create-user.use-case"; 
 
-export function MakeCreatUserController() {
+export function MakeCreateUserController() {
     
     const db = Database.getInstance();
     const userRepository = new UserRepository(db);
-    const createUseruseCase = new CreatUserUseCase(userRepository);
-    const createUser = new CreatUserController(createUseruseCase);
+    const createUseruseCase = new CreateUserUseCase(userRepository);
+    const createUser = new CreateUserController(createUseruseCase);
     
     return createUser;
 }

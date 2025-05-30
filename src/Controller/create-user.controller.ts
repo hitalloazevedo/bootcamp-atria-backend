@@ -1,14 +1,13 @@
 import { Request, Response } from "express";
-import { CreatUserUseCase } from "../use_case/Use_case_auth/create-user.use-case"; 
+import { CreateUserUseCase } from "../use_case/Use_case_auth/create-user.use-case"; 
 
-export class CreatUserController {
-    constructor(private usecase: CreatUserUseCase) { }
+export class CreateUserController {
+    constructor(private usecase: CreateUserUseCase) { }
 
     async handle(request: Request, response: Response) {
 
         try {
             const data = request.body
-
 
             await this.usecase.execute(data)
 
@@ -20,10 +19,5 @@ export class CreatUserController {
                 message: error.message
             })
         }
-
     }
-
-
-
-
 }
